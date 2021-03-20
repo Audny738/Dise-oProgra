@@ -1,3 +1,4 @@
+package Modelo;
 
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
@@ -18,8 +19,8 @@ public class ArchivoSalida {
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("calificaciones.csv", true), "utf-8"));
             for (int i=0; i<estudiantesList.size(); i++){
                 bufferedWriter.write(estudiantesList.get(i).getMatricula() + "," +
-                        estudiantesList.get(i).getAsignatura() + "," +
-                        estudiantesList.get(i).getCalificacion() + "\n");
+                estudiantesList.get(i).getAsignatura() + "," +
+                estudiantesList.get(i).getCalificacion() + "\n");
             }
             bufferedWriter.close();
         }catch (IOException e){

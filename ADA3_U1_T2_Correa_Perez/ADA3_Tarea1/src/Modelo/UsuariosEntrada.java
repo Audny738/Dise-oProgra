@@ -1,8 +1,6 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+package Modelo;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,18 +18,7 @@ public class UsuariosEntrada {
                 
             }
 
-            BufferedWriter bufferedWriter = new BufferedWriter((new FileWriter("usuarios.csv")));
-            for (int i=0; i<usuariosList.size(); i++){
-
-                char passwordE[] = (usuariosList.get(i).getContraseña()).toCharArray();
-                for (int j = 0;j < passwordE.length; j++){
-                    passwordE[j] = (char)(passwordE[j] + (char)(3));
-                }
-                String contraseñaE = String.valueOf(passwordE);
-
-                bufferedWriter.write(usuariosList.get(i).getNombreUsuario() + "," + contraseñaE + "\n");
-            }
-            bufferedWriter.close();
+        
             bufferedReader.close();
 
         }catch (IOException e){
@@ -39,4 +26,18 @@ public class UsuariosEntrada {
         }
         return usuariosList;
     } 
+
+    public void createFile(List<Usuarios> usuariosList){
+        try{
+            BufferedWriter bufferedWriter = new BufferedWriter((new FileWriter("users.csv")));
+            for (int i=0; i<usuariosList.size(); i++){
+
+                bufferedWriter.write(usuariosList.get(i).getNombreUsuario() + "," + usuariosList.get(i).getContraseña() + "\n");
+            }
+            bufferedWriter.close();
+
+        }catch (IOException e){
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 }

@@ -1,6 +1,7 @@
+package Aplicacion;
 
-
-import java.io.File;
+import Modelo.*;
+import java.io.*;
 import java.util.List;
 import java.util.Scanner;
 
@@ -25,12 +26,35 @@ public class Main {
         System.out.println("Nombre de usuario: ");
         String user = scanner.nextLine();
         
+      
         for(Usuarios users : usuariosList ){
-            if(user.compareTo(users.getNombreUsuario())==0){
+           
+            
+            char[] passwordE = (users.getContraseña()).toCharArray();
+            for (int j = 0;j < passwordE.length; j++){
+                passwordE[j] = (char)(passwordE[j] + (char)(3));
+            }
+            String contraseñaE = String.valueOf(passwordE);
+            users.setContraseña(contraseñaE);
+            //usuariosList.get(i).setContraseña(contraseñaE);
+            
+            File file = new File("users.csv");
+            file.delete();
+            usuariosE.createFile(usuariosList);
+                
+            if(user.compareTo(users.getNombreUsuario())==0)
+            {
                 System.out.println("Contraseña: ");
                 String password = scanner.nextLine();
                 while (verifica == 1){
-                    if (password.compareTo(users.getContraseña())==0){
+
+                    char[] contraseña = (users.getContraseña()).toCharArray();
+                    for (int j = 0;j < contraseña.length; j++){
+                        contraseña[j] = (char)(contraseña[j] - (char)(3));
+                    }
+                    
+                    String desencriptado = String.valueOf(contraseña);
+                    if (desencriptado.equals(password)){
                         System.out.println("Bienvenido: "+  users.getNombreUsuario()+"\n");
                         verifica = 0;
                     }
