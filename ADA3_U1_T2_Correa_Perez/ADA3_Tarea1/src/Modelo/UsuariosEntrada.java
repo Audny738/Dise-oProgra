@@ -32,7 +32,7 @@ public class UsuariosEntrada {
             BufferedWriter bufferedWriter = new BufferedWriter((new FileWriter("users.csv")));
             for (int i=0; i<usuariosList.size(); i++){
 
-                bufferedWriter.write(usuariosList.get(i).getNombreUsuario() + "," + usuariosList.get(i).getContraseña() + "\n");
+                bufferedWriter.write(usuariosList.get(i).getNombreUsuario() + "," + usuariosList.get(i).getContrasenia() + "\n");
             }
             bufferedWriter.close();
 
