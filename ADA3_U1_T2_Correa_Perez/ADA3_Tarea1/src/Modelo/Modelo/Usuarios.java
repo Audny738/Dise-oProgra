@@ -3,10 +3,10 @@ package Modelo;
 
 public class Usuarios {
     private String nombreUsuario;
-    private String contraseña;
+    private String contrasenia;
 
-    public Usuarios( String nombreUsuario, String contraseña){
-        this.contraseña = contraseña;
+    public Usuarios( String nombreUsuario, String contrasenia){
+        this.contrasenia = contrasenia;
         this.nombreUsuario = nombreUsuario;
     }
 
@@ -19,10 +19,10 @@ public class Usuarios {
     }
 
     public String getContraseña() {
-        return contraseña;
+        return contrasenia;
     }
 
-    public void setContraseña( String contraseña ){
-        this.contraseña = contraseña;
+    public void setContraseña( String contrasenia ){
+        this.contrasenia = contrasenia;
     }
 }

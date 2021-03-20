@@ -30,12 +30,12 @@ public class Main {
         for(Usuarios users : usuariosList ){
            
             
-            char[] passwordE = (users.getContraseña()).toCharArray();
+            char[] passwordE = (users.getContrasenia()).toCharArray();
             for (int j = 0;j < passwordE.length; j++){
                 passwordE[j] = (char)(passwordE[j] + (char)(3));
             }
-            String contraseñaE = String.valueOf(passwordE);
-            users.setContraseña(contraseñaE);
+            String contraseniaE = String.valueOf(passwordE);
+            users.setContrasenia(contraseniaE);
             //usuariosList.get(i).setContraseña(contraseñaE);
             
             File file = new File("users.csv");
@@ -48,12 +48,12 @@ public class Main {
                 String password = scanner.nextLine();
                 while (verifica == 1){
 
-                    char[] contraseña = (users.getContraseña()).toCharArray();
-                    for (int j = 0;j < contraseña.length; j++){
-                        contraseña[j] = (char)(contraseña[j] - (char)(3));
+                    char[] contrasenia = (users.getContrasenia()).toCharArray();
+                    for (int j = 0;j < contrasenia.length; j++){
+                        contrasenia[j] = (char)(contrasenia[j] - (char)(3));
                     }
                     
-                    String desencriptado = String.valueOf(contraseña);
+                    String desencriptado = String.valueOf(contrasenia);
                     if (desencriptado.equals(password)){
                         System.out.println("Bienvenido: "+  users.getNombreUsuario()+"\n");
                         verifica = 0;
