@@ -7,7 +7,10 @@ package Vista;
 
 import Modelo.ArchivoEntrada;
 import Modelo.EstudianteDatos;
+import Modelo.tbCalificaciones;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,28 +19,23 @@ import javax.swing.table.DefaultTableModel;
  * @author Lenovo
  */
 public class JFRegistro_Calif extends javax.swing.JFrame {
-    DefaultTableModel tabla = new DefaultTableModel();
+    public tbCalificaciones modelo = new tbCalificaciones();
+    public tbCalificaciones modelo2 = new tbCalificaciones();
     ArchivoEntrada entrada = new ArchivoEntrada();
     List<EstudianteDatos> estudiantesList = entrada.readFile();
     String datos[][] = new String[estudiantesList.size()][5];
-    /**
-     * Creates new form JFRegistro_Calif
-     */
+    
     
     public JFRegistro_Calif() {
         initComponents();
-        String[] titulos = new String[]{"Matrícula","Apellido P.","Apellido M.", "Nombres","Calificación"};
-        tabla.setColumnIdentifiers(titulos);
-        tblCalif.setModel(tabla);
+        modelo.inicializaTabla(tblCalif);
+        this.txtShowName.setText(estudiantesList.get(0).getNombres());
     }
     
+
     public void mostrar(){
         
         for (int i = 0; i < estudiantesList.size(); i++){
-            datos[i][0] = String.valueOf(estudiantesList.get(i).getMatricula());
-            datos[i][1] = estudiantesList.get(i).getPrimerApellido();
-            datos[i][2] = estudiantesList.get(i).getSegundoApellido();
-            datos[i][3] = estudiantesList.get(i).getNombres();
             datos[i][4] =  String.valueOf(estudiantesList.get(i).getCalificacion());
         }
     }
@@ -57,8 +55,12 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
         txtShowName = new javax.swing.JTextField();
         txtCalificacion = new javax.swing.JTextField();
         btmAdd = new javax.swing.JButton();
+        btmRegresar = new javax.swing.JButton();
+        btmActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(500, 100));
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Gadugi", 1, 18)); // NOI18N
         jLabel1.setText("Registro de calificaciones");
@@ -84,12 +86,24 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
 
         lbCalif.setText("calificacion:");
 
-        txtCalificacion.setText("(1-100)");
-
         btmAdd.setText("Agregar");
         btmAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btmAddActionPerformed(evt);
+            }
+        });
+
+        btmRegresar.setText("Regresar");
+        btmRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btmRegresarActionPerformed(evt);
+            }
+        });
+
+        btmActualizar.setText("ACTUALIZAR TABLA");
+        btmActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btmActualizarMouseClicked(evt);
             }
         });
 
@@ -98,7 +112,7 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -110,11 +124,17 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
                         .addComponent(txtShowName, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lbCalif)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btmAdd)
                         .addGap(33, 33, 33))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(156, 156, 156)
+                .addComponent(btmRegresar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btmActualizar)
+                .addGap(43, 43, 43))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,7 +149,11 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
                     .addComponent(btmAdd))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btmRegresar)
+                    .addComponent(btmActualizar))
+                .addContainerGap())
         );
 
         pack();
@@ -137,23 +161,38 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
 
     private void btmAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmAddActionPerformed
         
-        
+        int i = 0;
         try{
-            
-        int calificacion = Integer.parseInt(txtCalificacion.getText());
-        String nombre = txtShowName.getText();
-                
-        for(EstudianteDatos alumno : estudiantesList){
-            if(nombre.equals(alumno.getNombres())){
-                alumno.setCalificacion(calificacion);
-                txtCalificacion.setText("");
-                mostrar();
-            } 
+            int calificacion =Integer.parseInt(this.txtCalificacion.getText());
+       while( i<estudiantesList.size()){
+           
+           estudiantesList.get(i).setCalificacion(calificacion);
+           //JOptionPane.showMessageDialog(null, estudiantesList.get(i).getCalificacion());
+
+           
+           this.txtCalificacion.setText("");
+           
+           this.txtShowName.setText(estudiantesList.get(i).getNombres());
+          i++;
+           //calificacion =Integer.parseInt(this.txtCalificacion.getText());
         }
-        } catch (NumberFormatException e) {
+        }catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Error: Inserte valores numéricos.");
         }
+        
+        
     }//GEN-LAST:event_btmAddActionPerformed
+
+    private void btmRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmRegresarActionPerformed
+       this.dispose();
+       JFInicio inicio = new JFInicio();
+       inicio.setVisible(true);
+    }//GEN-LAST:event_btmRegresarActionPerformed
+
+    private void btmActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btmActualizarMouseClicked
+        modelo.inicializaTabla(tblCalif);
+         JOptionPane.showMessageDialog(null,estudiantesList.get(0).getCalificacion()+"  "+estudiantesList.get(1)+estudiantesList.get(3).getCalificacion());
+    }//GEN-LAST:event_btmActualizarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -193,7 +232,9 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btmActualizar;
     private javax.swing.JButton btmAdd;
+    private javax.swing.JButton btmRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbCalif;

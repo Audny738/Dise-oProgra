@@ -171,10 +171,11 @@ public class JFlogin extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Bienvenido " + users.getNombreUsuario());
                         JFInicio inicio = new JFInicio();
                         inicio.setVisible(true);
+                        this.dispose();
                         verifica = 0;
                     }
                     else{
-                        JOptionPane.showMessageDialog(null, "Contraseña incorrecta." + " "+ desencriptado+ " "+ users.getContraseña());
+                        JOptionPane.showMessageDialog(null, "Contraseña incorrecta.");
                         //System.out.println("Contraseña incorrecta. Ingrese de nuevo: ");
                        txtPassword.setText("");
                         break;

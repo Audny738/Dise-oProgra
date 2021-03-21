@@ -38,6 +38,8 @@ public class JFInicio extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(500, 100));
+        setResizable(false);
 
         lbTitulo.setFont(new java.awt.Font("Gadugi", 1, 18)); // NOI18N
         lbTitulo.setText("INICIO");
@@ -73,19 +75,10 @@ public class JFInicio extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(151, 151, 151)
-                .addComponent(lbTitulo2)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lbTitulo)
-                        .addGap(168, 168, 168))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btmRegresarLogin)
-                        .addGap(36, 36, 36))))
+                .addComponent(btmRegresarLogin)
+                .addGap(36, 36, 36))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(76, 76, 76)
                 .addComponent(btmCapturar)
@@ -96,6 +89,14 @@ public class JFInicio extends javax.swing.JFrame {
                 .addGap(146, 146, 146)
                 .addComponent(btmGenerarPDF)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(151, 151, 151)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbTitulo2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(lbTitulo)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +126,9 @@ public class JFInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btmRegresarLoginMouseClicked
 
     private void btmCapturarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btmCapturarMouseClicked
-        // TODO add your handling code here:
+        this.dispose();
+        JFRegistro_Calif rc = new JFRegistro_Calif();
+        rc.setVisible(true);
     }//GEN-LAST:event_btmCapturarMouseClicked
 
     private void btmGenerarPDFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btmGenerarPDFMouseClicked
