@@ -1,0 +1,9 @@
+Actividades que se realizaron para esta actividad.
+1. Creación de la clase usuario, este fue muy sencillo de realizar porque solo necesitabamos obtener dos atributos de dicha clase
+Tiempo: 30 min.
+2. Crear el algoritmo de encriptamiento de la contraseña, esto no fue tan dificil pero tuvimos que investigra al principio, por eso tardamos un poco
+Tiempo: 1 hr
+3. Leer el CSV, fue rápido porque ya se tenía la parte similar en la parte de estudiantes, solo agregamos la lista de usuarios.
+Tiempo: 40 min.
+4. Ingresar la parte de registro en el Main, esto fue sencillo, solo teniamos que comparar las contraseñas con lo que el usuario ingrese.
+Tiempo: 20 min.
