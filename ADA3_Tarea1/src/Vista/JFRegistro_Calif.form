@@ -106,7 +106,7 @@
                 <Column editable="false" title="Title 1" type="java.lang.Object"/>
                 <Column editable="false" title="Title 2" type="java.lang.Object"/>
                 <Column editable="false" title="Title 3" type="java.lang.Object"/>
-                <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                <Column editable="false" title="Title 4" type="java.lang.Object"/>
                 <Column editable="false" title="Title 5" type="java.lang.Object"/>
               </Table>
             </Property>
@@ -175,6 +175,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Guardar"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btmGuardarMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

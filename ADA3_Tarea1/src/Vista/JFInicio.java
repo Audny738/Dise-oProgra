@@ -141,7 +141,9 @@ public class JFInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btmGenerarPDFMouseClicked
 
     private void btmModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmModificarActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        JFModificar modificar = new JFModificar();
+        modificar.setVisible(true);
     }//GEN-LAST:event_btmModificarActionPerformed
 
     /**

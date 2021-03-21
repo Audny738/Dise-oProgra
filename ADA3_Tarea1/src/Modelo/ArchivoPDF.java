@@ -10,7 +10,9 @@ package Modelo;
  *
  * @author Audny Correa
  */
-import com.qoppa.pdfWriter.PDFDocument;
+
+
+/*import com.qoppa.pdfWriter.PDFDocument;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -34,4 +36,4 @@ public class ArchivoPDF {
     }
     
     
-}
+}*/
