@@ -57,6 +57,11 @@ public class JFInicio extends javax.swing.JFrame {
                 btmCapturarMouseClicked(evt);
             }
         });
+        btmCapturar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btmCapturarActionPerformed(evt);
+            }
+        });
 
         btmModificar.setText("Modificar");
         btmModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -140,9 +145,15 @@ public class JFInicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btmGenerarPDFMouseClicked
 
+<<<<<<< Updated upstream
     private void btmModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmModificarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btmModificarActionPerformed
+=======
+    private void btmCapturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmCapturarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btmCapturarActionPerformed
+>>>>>>> Stashed changes
 
     /**
      * @param args the command line arguments

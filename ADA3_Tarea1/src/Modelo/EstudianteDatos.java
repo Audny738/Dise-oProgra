@@ -76,6 +76,10 @@ public class EstudianteDatos {
     public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
     }
+    
+    public String getNombreCompleto(){
+        return this.primerApellido + this.segundoApellido + this.nombres;
+    }
 
 
 }
