@@ -21,6 +21,7 @@ public class Main {
         UsuariosEntrada usuariosE = new UsuariosEntrada();
         List<Usuarios> usuariosList = usuariosE.readFile();
         
+      
         Scanner scanner = new Scanner(System.in);
         float calif;
         int aux;
