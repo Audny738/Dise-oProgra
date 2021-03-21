@@ -73,6 +73,18 @@ public class JFlogin extends javax.swing.JFrame {
         lbTitle.setFont(new java.awt.Font("Gadugi", 1, 18)); // NOI18N
         lbTitle.setText("Login");
 
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
+
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
+
         btmLogin.setFont(new java.awt.Font("Gadugi", 0, 11)); // NOI18N
         btmLogin.setText("Login");
         btmLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -192,6 +204,16 @@ public class JFlogin extends javax.swing.JFrame {
     private void btmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_btmSalirActionPerformed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+        this.txtUsuario.getText();
+    }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+        this.txtPassword.getText();
+    }//GEN-LAST:event_txtPasswordActionPerformed
 
     /**
      * @param args the command line arguments
