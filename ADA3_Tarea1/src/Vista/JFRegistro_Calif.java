@@ -5,7 +5,9 @@
  */
 package Vista;
 import Modelo.ArchivoEntrada;
+import Modelo.ArchivoSalida;
 import Modelo.EstudianteDatos;
+import java.io.File;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -14,14 +16,17 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Lenovo
  */
+
 public class JFRegistro_Calif extends javax.swing.JFrame {
+    
+     
     DefaultTableModel modelo = new DefaultTableModel();
+   // public tbCalificaciones modelo = new tbCalificaciones() ;
     ArchivoEntrada entrada = new ArchivoEntrada();
     List<EstudianteDatos> estudiantesList = entrada.readFile();
-    
-    
     public JFRegistro_Calif() {
-        int verifica = 0, j = 0;
+      
+  
         initComponents();
         //modelo.inicializaTabla(tblCalif);
         modelo.addColumn("Matrícula");
@@ -39,20 +44,14 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
             datos[3] = estudiantesList.get(i).getNombres();
             datos[4] = String.valueOf(estudiantesList.get(i).getCalificacion());
             modelo.addRow(datos);
+           
         }
-        
-        while (verifica == 0){
-           int calif = (estudiantesList.get(j).getCalificacion());
-           if (calif == 0){     
-               this.txtShowName.setText(estudiantesList.get(j).getNombres());
-               verifica = 1;
-           } else {
-               j++;
-           }
-        }
- 
+       this.txtShowName.setText(estudiantesList.get(0).getNombres());
+       /*modelo = new tbCalificaciones(estudiantesList);
+       this.tblCalif.setModel(modelo);
+       */
     }
-   
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -97,7 +96,7 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -123,6 +122,11 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
         });
 
         btmGuardar.setText("Guardar");
+        btmGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btmGuardarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -190,15 +194,24 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
                i++;
            }
         }
-        
+
         if(calificacion%1 != 0 || calificacion<0 || calificacion>100){ //Validacion de numeros enteros
             JOptionPane.showMessageDialog(null, "Calificación inválida. Introduzca un número correcto (1-100).");
         } else{
             modelo.setValueAt(calificacion, i, 4);
             estudiantesList.get(i).setCalificacion(calificacion);
         }
-        this.txtCalificacion.setText("");
-        
+       
+        while (veri == 0){
+           int calif = (estudiantesList.get(j).getCalificacion());
+           if (calif == 0){
+              this.txtShowName.setText(estudiantesList.get(j).getNombres());
+               veri = 1;
+           } else {
+               j++;
+           }
+        }
+         this.txtCalificacion.setText("");
         }catch (NumberFormatException e1) {
             JOptionPane.showMessageDialog(null, "Error: Inserte valores numéricos.");
         } catch (IndexOutOfBoundsException e2){
@@ -208,12 +221,26 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btmAddActionPerformed
 
-    
     private void btmRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmRegresarActionPerformed
-       this.dispose();
+       
+       
+        this.dispose();
        JFInicio inicio = new JFInicio();
        inicio.setVisible(true);
     }//GEN-LAST:event_btmRegresarActionPerformed
+
+    private void btmGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btmGuardarMouseClicked
+        
+   
+        File file = new File("calificaciones.csv");
+        
+            file.delete();
+            ArchivoSalida salida = new ArchivoSalida();
+            salida.createFile(estudiantesList);
+            JOptionPane.showMessageDialog(null, "Calificaciones guardadas.");
+             
+       
+    }//GEN-LAST:event_btmGuardarMouseClicked
 
     /**
      * @param args the command line arguments
