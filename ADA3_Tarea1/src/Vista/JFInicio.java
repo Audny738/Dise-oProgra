@@ -145,17 +145,17 @@ public class JFInicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btmGenerarPDFMouseClicked
 
-<<<<<<< Updated upstream
+
     private void btmModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmModificarActionPerformed
         this.dispose();
         JFModificar modificar = new JFModificar();
         modificar.setVisible(true);
     }//GEN-LAST:event_btmModificarActionPerformed
-=======
+
     private void btmCapturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmCapturarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btmCapturarActionPerformed
->>>>>>> Stashed changes
+
 
     /**
      * @param args the command line arguments
