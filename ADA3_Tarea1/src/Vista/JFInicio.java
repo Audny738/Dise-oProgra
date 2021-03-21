@@ -33,9 +33,9 @@ public class JFInicio extends javax.swing.JFrame {
         btmRegresarLogin = new javax.swing.JButton();
         btmCapturar = new javax.swing.JButton();
         btmModificar = new javax.swing.JButton();
+        lbTitulo2 = new javax.swing.JLabel();
+        btmGenerarPDF = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,12 +58,15 @@ public class JFInicio extends javax.swing.JFrame {
 
         btmModificar.setText("Modificar");
 
-        jMenu1.setText("PDF");
-        jMenuBar1.add(jMenu1);
+        lbTitulo2.setFont(new java.awt.Font("Gadugi", 0, 14)); // NOI18N
+        lbTitulo2.setText("Calificaciones");
 
-        jMenu2.setText("CSV");
-        jMenuBar1.add(jMenu2);
-
+        btmGenerarPDF.setText("Imprimir PDF");
+        btmGenerarPDF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btmGenerarPDFMouseClicked(evt);
+            }
+        });
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -71,33 +74,45 @@ public class JFInicio extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(151, 151, 151)
+                .addComponent(lbTitulo2)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btmRegresarLogin)
-                        .addGap(152, 152, 152))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lbTitulo)
-                        .addGap(168, 168, 168))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
+                        .addGap(168, 168, 168))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btmRegresarLogin)
+                        .addGap(36, 36, 36))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(76, 76, 76)
                 .addComponent(btmCapturar)
-                .addGap(82, 82, 82)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(btmModificar)
-                .addGap(0, 97, Short.MAX_VALUE))
+                .addGap(78, 78, 78))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(146, 146, 146)
+                .addComponent(btmGenerarPDF)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(21, 21, 21)
                 .addComponent(lbTitulo)
-                .addGap(64, 64, 64)
+                .addGap(18, 18, 18)
+                .addComponent(lbTitulo2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btmCapturar)
-                    .addComponent(btmModificar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                    .addComponent(btmModificar)
+                    .addComponent(btmCapturar))
+                .addGap(27, 27, 27)
+                .addComponent(btmGenerarPDF)
+                .addGap(27, 27, 27)
                 .addComponent(btmRegresarLogin)
-                .addGap(30, 30, 30))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -112,6 +127,10 @@ public class JFInicio extends javax.swing.JFrame {
     private void btmCapturarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btmCapturarMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btmCapturarMouseClicked
+
+    private void btmGenerarPDFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btmGenerarPDFMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btmGenerarPDFMouseClicked
 
     /**
      * @param args the command line arguments
@@ -153,11 +172,11 @@ public class JFInicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btmCapturar;
+    private javax.swing.JButton btmGenerarPDF;
     private javax.swing.JButton btmModificar;
     private javax.swing.JButton btmRegresarLogin;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lbTitulo;
+    private javax.swing.JLabel lbTitulo2;
     // End of variables declaration//GEN-END:variables
 }
