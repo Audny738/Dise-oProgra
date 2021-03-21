@@ -59,6 +59,11 @@ public class JFInicio extends javax.swing.JFrame {
         });
 
         btmModificar.setText("Modificar");
+        btmModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btmModificarActionPerformed(evt);
+            }
+        });
 
         lbTitulo2.setFont(new java.awt.Font("Gadugi", 0, 14)); // NOI18N
         lbTitulo2.setText("Calificaciones");
@@ -134,6 +139,10 @@ public class JFInicio extends javax.swing.JFrame {
     private void btmGenerarPDFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btmGenerarPDFMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btmGenerarPDFMouseClicked
+
+    private void btmModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btmModificarActionPerformed
 
     /**
      * @param args the command line arguments
