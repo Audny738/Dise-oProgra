@@ -70,6 +70,7 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
         btmAdd = new javax.swing.JButton();
         btmRegresar = new javax.swing.JButton();
         btmGuardar = new javax.swing.JButton();
+        btmGenerarPDF = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(500, 100));
@@ -128,6 +129,13 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
             }
         });
 
+        btmGenerarPDF.setText("Imprimir PDF");
+        btmGenerarPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btmGenerarPDFActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,11 +159,13 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
                         .addComponent(btmAdd)
                         .addGap(33, 33, 33))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addGap(48, 48, 48)
                 .addComponent(btmRegresar)
-                .addGap(55, 55, 55)
+                .addGap(48, 48, 48)
                 .addComponent(btmGuardar)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btmGenerarPDF)
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +183,8 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btmRegresar)
-                    .addComponent(btmGuardar))
+                    .addComponent(btmGuardar)
+                    .addComponent(btmGenerarPDF))
                 .addContainerGap())
         );
 
@@ -242,6 +253,13 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btmGuardarMouseClicked
 
+    private void btmGenerarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmGenerarPDFActionPerformed
+        ArchivoSalida salida = new ArchivoSalida();
+        salida.crearPDF(estudiantesList);
+        JOptionPane.showMessageDialog(null, "PDF generado.");
+        
+    }//GEN-LAST:event_btmGenerarPDFActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -281,6 +299,7 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btmAdd;
+    private javax.swing.JButton btmGenerarPDF;
     private javax.swing.JButton btmGuardar;
     private javax.swing.JButton btmRegresar;
     private javax.swing.JLabel jLabel1;
