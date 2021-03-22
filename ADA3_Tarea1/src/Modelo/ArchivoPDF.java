@@ -52,7 +52,7 @@ public class ArchivoPDF implements Printable{
             int XActual = (int)pf.getImageableX();
             Vector sigFila = (Vector)datos.elementAt(lineaActual);
             for(int col = 0; col < sigFila.size(); ++col){
-                String stringCelda = (String)sigFila.elementAt(col);
+                String stringCelda = String.valueOf(sigFila.elementAt(col));
                 g.drawString(stringCelda, XActual + margenX, YActual + margenY);
                 
                 int anchoCol = anchoColumnas;
