@@ -1,5 +1,6 @@
 package Modelo;
 
+import com.qoppa.pdfWriter.PDFDocument;
 import com.qoppa.pdfWriter.PDFPrinterJob;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
@@ -35,7 +36,8 @@ public class ArchivoSalida {
     
     public void crearPDF(List<EstudianteDatos> estudiantesList){
         ArchivoPDF tablaPDF = new ArchivoPDF(crearDatos(estudiantesList), null, true);
-        PrinterJob printerJob = PDFPrinterJob.getPrinterJob();
+        //PrinterJob printerJob = PDFPrinterJob.getPrinterJob();
+        PrinterJob printerJob = PrinterJob.getPrinterJob();
         printerJob.setPrintable(tablaPDF);
         try{
             printerJob.print();
