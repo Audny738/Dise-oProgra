@@ -47,10 +47,14 @@ public class ArchivoSalida {
     }
     
     private Vector crearDatos(List<EstudianteDatos> estudiantesList){
+        tbCalificaciones entrada = new tbCalificaciones();
+        List<EstudianteDatos> estudiantesLista = entrada.readFile();
+    int i = 0;
         Vector datos = new Vector();
         for(EstudianteDatos alumno : estudiantesList){
+            
             Vector filaDatos = new Vector();
-            for (int col = 0; col < 3; ++col){
+            for (int col = 0; col < 3; col++){
                 switch(col){
                     case 0:
                         filaDatos.addElement(alumno.getMatricula());
@@ -59,12 +63,16 @@ public class ArchivoSalida {
                         filaDatos.addElement(alumno.getNombreCompleto());
                         break;
                     case 2:
-                        filaDatos.addElement(alumno.getCalificacion());
+                        if (alumno.getCalificacion()==0){
+                            filaDatos.addElement("S/C");
+                        } else{
+                            filaDatos.addElement(alumno.getCalificacion());
+                        }
                         break;
                 }
             }
             datos.addElement(filaDatos);
-            
+            i++;
         }
         return datos;
     }

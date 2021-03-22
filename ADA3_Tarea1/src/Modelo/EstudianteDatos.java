@@ -84,7 +84,8 @@ public class EstudianteDatos {
     }
     
     public String getNombreCompleto(){
-        return this.primerApellido + this.segundoApellido + this.nombres;
+        String nombreCompleto = primerApellido + " " + segundoApellido + " " + nombres;
+        return nombreCompleto;
     }
 
 

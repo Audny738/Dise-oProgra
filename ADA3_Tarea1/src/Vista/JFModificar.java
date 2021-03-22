@@ -6,6 +6,7 @@
 package Vista;
 
 
+import Modelo.ArchivoEntrada;
 import Modelo.ArchivoSalida;
 import Modelo.EstudianteDatos;
 import Modelo.tbCalificaciones;
@@ -174,8 +175,14 @@ public class JFModificar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btmImprimirPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmImprimirPDFActionPerformed
+        ArchivoEntrada entrada2 = new ArchivoEntrada();
+        List<EstudianteDatos> estudiantesLista = entrada2.readFile();
         ArchivoSalida salida = new ArchivoSalida();
-        salida.crearPDF(estudiantesList);
+       
+        for (int i = 0; i < estudiantesLista.size(); i++){
+           estudiantesLista.get(i).setCalificacion(estudiantesList.get(i).getCalificacion());
+        }
+        salida.crearPDF(estudiantesLista);
         JOptionPane.showMessageDialog(null, "PDF generado.");
     }//GEN-LAST:event_btmImprimirPDFActionPerformed
 

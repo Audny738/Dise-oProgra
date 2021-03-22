@@ -213,7 +213,7 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
         }catch (NumberFormatException e1) {
             JOptionPane.showMessageDialog(null, "Error: Inserte valores numéricos.");
         } catch (IndexOutOfBoundsException e2){
-            JOptionPane.showMessageDialog(null, "Error: No hay más estudiantes.");
+            JOptionPane.showMessageDialog(null, "Todos los estudiantes regristrados.");
         }
         
         
