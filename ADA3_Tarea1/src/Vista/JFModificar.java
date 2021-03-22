@@ -5,45 +5,33 @@
  */
 package Vista;
 
-import Modelo.ArchivoEntrada;
+
 import Modelo.ArchivoSalida;
 import Modelo.EstudianteDatos;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
+import Modelo.tbCalificaciones;
+import java.io.File;
+
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 
+/**
+ *
+ * @author Lenovo
+ */
 public class JFModificar extends javax.swing.JFrame {
+   public tbCalificaciones modelo = new tbCalificaciones();
+   tbCalificaciones entrada = new tbCalificaciones();
+   List<EstudianteDatos> estudiantesList = entrada.readFile();
+    /**
+     * Creates new form JFModificar
+     */
    
-    DefaultTableModel modelo = new DefaultTableModel();
-    ArchivoEntrada entrada = new ArchivoEntrada();
-    List<EstudianteDatos> estudiantesList = entrada.readFile();
-    
     public JFModificar() {
        
         initComponents();
-        modelo.addColumn("Matrícula");
-        modelo.addColumn("Apellido P.");
-        modelo.addColumn("Apellido M.");
-        modelo.addColumn("Nombres");
-        modelo.addColumn("Calificación");
-        this.tblCal.setModel(modelo);
+        modelo.inicializaTabla(tblCal);
         
-        String []datos = new String[5];
-        for (int i = 0; i < estudiantesList.size(); i++){
-            datos[0] = String.valueOf( estudiantesList.get(i).getMatricula());
-            datos[1] = estudiantesList.get(i).getPrimerApellido();
-            datos[2] = estudiantesList.get(i).getSegundoApellido();
-            datos[3] = estudiantesList.get(i).getNombres();
-            datos[4] = String.valueOf(estudiantesList.get(i).getCalificacion());
-            modelo.addRow(datos);
-           
-        }
-       
     }
 
     /**
@@ -59,8 +47,16 @@ public class JFModificar extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCal = new javax.swing.JTable();
         btmImprimirPDF = new javax.swing.JButton();
+        btmModificar = new javax.swing.JButton();
+        btmRegresar = new javax.swing.JButton();
+        lbMatricula1 = new javax.swing.JLabel();
+        txtCalifNueva = new javax.swing.JTextField();
+        txtMatricula = new javax.swing.JTextField();
+        lbMatricula = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(400, 100));
+        setResizable(false);
 
         lblTitle.setFont(new java.awt.Font("Gadugi", 1, 18)); // NOI18N
         lblTitle.setText("Modificar calificaciones");
@@ -99,36 +95,78 @@ public class JFModificar extends javax.swing.JFrame {
             }
         });
 
+        btmModificar.setText("Modificar");
+        btmModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btmModificarMouseClicked(evt);
+            }
+        });
+
+        btmRegresar.setText("Regresar");
+        btmRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btmRegresarActionPerformed(evt);
+            }
+        });
+
+        lbMatricula1.setText("Calificación nueva:");
+
+        lbMatricula.setText("Matrícula: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(104, Short.MAX_VALUE)
-                .addComponent(lblTitle)
-                .addGap(97, 97, 97))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addComponent(btmImprimirPDF)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
+                .addComponent(btmRegresar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btmModificar)
+                        .addGap(77, 77, 77)
+                        .addComponent(btmImprimirPDF)
+                        .addGap(33, 33, 33))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblTitle)
+                        .addGap(137, 137, 137))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbMatricula)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(lbMatricula1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtCalifNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addGap(11, 11, 11)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(12, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(17, 17, 17)
                 .addComponent(lblTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
-                .addComponent(btmImprimirPDF)
-                .addGap(27, 27, 27))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCalifNueva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbMatricula1)
+                    .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbMatricula))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btmImprimirPDF)
+                    .addComponent(btmModificar)
+                    .addComponent(btmRegresar))
+                .addGap(26, 26, 26))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(73, 73, 73)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(84, 84, 84)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(74, Short.MAX_VALUE)))
         );
 
@@ -140,6 +178,38 @@ public class JFModificar extends javax.swing.JFrame {
         salida.crearPDF(estudiantesList);
         JOptionPane.showMessageDialog(null, "PDF generado.");
     }//GEN-LAST:event_btmImprimirPDFActionPerformed
+
+    private void btmModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btmModificarMouseClicked
+       
+        try{
+        int matricula = Integer.valueOf(this.txtMatricula.getText());
+        int califNueva = Integer.valueOf(this.txtCalifNueva.getText());
+      
+        for (int i = 0; i < estudiantesList.size(); i++){
+            if (estudiantesList.get(i).getMatricula() == matricula ){
+                estudiantesList.get(i).setCalificacion(califNueva);
+                //JOptionPane.showMessageDialog(null, matricula +" "+ String.valueOf(estudiantesList.get(i).getMatricula()) +" "+ estudiantesList.get(i).getCalificacion());
+                modelo.setValue(tblCal, estudiantesList);
+            }
+        }
+        File file = new File("calificaciones.csv");
+        file.delete();
+        ArchivoSalida salida = new ArchivoSalida();
+        salida.createFile(estudiantesList);
+        JOptionPane.showMessageDialog(null, "Calificaciones guardadas.");
+        
+        } catch (NumberFormatException e1) {
+            JOptionPane.showMessageDialog(null, "Error: Inserte valores numéricos.");
+        } catch (IndexOutOfBoundsException e2){
+            JOptionPane.showMessageDialog(null, "Error: No hay más estudiantes.");
+        }
+    }//GEN-LAST:event_btmModificarMouseClicked
+
+    private void btmRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmRegresarActionPerformed
+        this.dispose();
+        JFInicio inicio = new JFInicio();
+        inicio.setVisible(true);
+    }//GEN-LAST:event_btmRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,8 +248,14 @@ public class JFModificar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btmImprimirPDF;
+    private javax.swing.JButton btmModificar;
+    private javax.swing.JButton btmRegresar;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbMatricula;
+    private javax.swing.JLabel lbMatricula1;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblCal;
+    private javax.swing.JTextField txtCalifNueva;
+    private javax.swing.JTextField txtMatricula;
     // End of variables declaration//GEN-END:variables
 }

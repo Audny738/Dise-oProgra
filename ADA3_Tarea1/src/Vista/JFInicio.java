@@ -39,7 +39,8 @@ public class JFInicio extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(500, 100));
+        setBackground(new java.awt.Color(135, 206, 255));
+        setLocation(new java.awt.Point(450, 100));
         setResizable(false);
 
         lbTitulo.setFont(new java.awt.Font("Gadugi", 1, 18)); // NOI18N
@@ -82,21 +83,19 @@ public class JFInicio extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(76, 76, 76)
                 .addComponent(btmCapturar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                 .addComponent(btmModificar)
                 .addGap(78, 78, 78))
             .addGroup(layout.createSequentialGroup()
-                .addGap(151, 151, 151)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbTitulo2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(lbTitulo)))
+                .addGap(165, 165, 165)
+                .addComponent(lbTitulo)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btmRegresarLogin)
-                .addGap(140, 140, 140))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(145, 145, 145)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbTitulo2)
+                    .addComponent(btmRegresarLogin))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,13 +104,13 @@ public class JFInicio extends javax.swing.JFrame {
                 .addComponent(lbTitulo)
                 .addGap(18, 18, 18)
                 .addComponent(lbTitulo2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btmModificar)
                     .addComponent(btmCapturar))
-                .addGap(74, 74, 74)
+                .addGap(46, 46, 46)
                 .addComponent(btmRegresarLogin)
-                .addGap(22, 22, 22))
+                .addGap(50, 50, 50))
         );
 
         pack();

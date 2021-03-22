@@ -27,7 +27,13 @@ public class EstudianteDatos {
         this.calificacion = 0;
        
     }
-
+    
+    public EstudianteDatos(int matricula, String asignatura, int calificacion){
+        this.matricula = matricula;
+        this.asignatura = asignatura;
+        this.calificacion = calificacion;
+       
+    }
     /** SE GENERAN TODOS LOS METODOS GETTERS Y SETTERS NECESARIOS*/
     public int getMatricula() {
         return matricula;

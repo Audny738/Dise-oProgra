@@ -5,8 +5,10 @@
  */
 package Vista;
 import Modelo.ArchivoEntrada;
+import Modelo.tbCalificacionesO;
 import Modelo.ArchivoSalida;
 import Modelo.EstudianteDatos;
+import Modelo.tbCalificaciones;
 import java.io.File;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -20,32 +22,16 @@ import javax.swing.table.DefaultTableModel;
 public class JFRegistro_Calif extends javax.swing.JFrame {
     
      
-    DefaultTableModel modelo = new DefaultTableModel();
-   // public tbCalificaciones modelo = new tbCalificaciones() ;
-    ArchivoEntrada entrada = new ArchivoEntrada();
-    List<EstudianteDatos> estudiantesList = entrada.readFile();
+    public tbCalificacionesO modelo = new tbCalificacionesO();
+   ArchivoEntrada entrada = new ArchivoEntrada();
+   List<EstudianteDatos> estudiantesList = entrada.readFile();
+    
     public JFRegistro_Calif() {
       
   
         initComponents();
-        //modelo.inicializaTabla(tblCalif);
-        modelo.addColumn("Matrícula");
-        modelo.addColumn("Apellido P.");
-        modelo.addColumn("Apellido M.");
-        modelo.addColumn("Nombres");
-        modelo.addColumn("Calificación");
-        this.tblCalif.setModel(modelo);
+       modelo.inicializaTabla(tblCalif);
         
-        String []datos = new String[5];
-        for (int i = 0; i < estudiantesList.size(); i++){
-            datos[0] = String.valueOf( estudiantesList.get(i).getMatricula());
-            datos[1] = estudiantesList.get(i).getPrimerApellido();
-            datos[2] = estudiantesList.get(i).getSegundoApellido();
-            datos[3] = estudiantesList.get(i).getNombres();
-            datos[4] = String.valueOf(estudiantesList.get(i).getCalificacion());
-            modelo.addRow(datos);
-           
-        }
        this.txtShowName.setText(estudiantesList.get(0).getNombres());
        /*modelo = new tbCalificaciones(estudiantesList);
        this.tblCalif.setModel(modelo);
@@ -140,16 +126,11 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(94, 94, 94))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(txtShowName, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lbCalif)
@@ -157,35 +138,42 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
                         .addComponent(txtCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btmAdd)
-                        .addGap(33, 33, 33))))
+                        .addGap(33, 33, 33))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(btmRegresar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btmGuardar)
+                        .addGap(47, 47, 47)
+                        .addComponent(btmGenerarPDF)
+                        .addGap(23, 23, 23))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(btmRegresar)
-                .addGap(48, 48, 48)
-                .addComponent(btmGuardar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btmGenerarPDF)
-                .addGap(23, 23, 23))
+                .addGap(88, 88, 88)
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(17, 17, 17)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtShowName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbCalif)
                     .addComponent(btmAdd))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btmRegresar)
                     .addComponent(btmGuardar)
                     .addComponent(btmGenerarPDF))
-                .addContainerGap())
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -193,26 +181,24 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
 
     private void btmAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmAddActionPerformed
 
-        int verifica = 0, i = 0, veri = 0, j = 0;
+       int veri = 0, j=0;
         try{
             
         int calificacion =Integer.parseInt(this.txtCalificacion.getText());
-        while (verifica == 0){
-           int calif = (estudiantesList.get(i).getCalificacion());
-           if (calif == 0){
-               verifica = 1;
-           } else {
-               i++;
-           }
-        }
-
+        String actualName = this.txtShowName.getText();
+        
         if(calificacion%1 != 0 || calificacion<0 || calificacion>100){ //Validacion de numeros enteros
             JOptionPane.showMessageDialog(null, "Calificación inválida. Introduzca un número correcto (1-100).");
         } else{
-            modelo.setValueAt(calificacion, i, 4);
-            estudiantesList.get(i).setCalificacion(calificacion);
+           for (int i = 0; i < estudiantesList.size(); i++){
+            if ( estudiantesList.get(i).getNombres().equals(actualName) ){
+                estudiantesList.get(i).setCalificacion(calificacion);
+                //JOptionPane.showMessageDialog(null, matricula +" "+ String.valueOf(estudiantesList.get(i).getMatricula()) +" "+ estudiantesList.get(i).getCalificacion());
+                modelo.setValue(tblCalif, estudiantesList);
+            }
+        } 
         }
-       
+     
         while (veri == 0){
            int calif = (estudiantesList.get(j).getCalificacion());
            if (calif == 0){
@@ -222,6 +208,7 @@ public class JFRegistro_Calif extends javax.swing.JFrame {
                j++;
            }
         }
+        
          this.txtCalificacion.setText("");
         }catch (NumberFormatException e1) {
             JOptionPane.showMessageDialog(null, "Error: Inserte valores numéricos.");
